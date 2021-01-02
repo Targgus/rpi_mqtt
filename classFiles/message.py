@@ -9,7 +9,7 @@ class Message(Data):
         self.client_id = config['bridge']['client_id']
         self.keepalive = config['bridge']['keepalive']
 
-    def creatTopic(self):
+    def createTopic(self):
         return f'rpi/sensor/{self.sensor}'
 
     def createBody(self):
