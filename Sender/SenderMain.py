@@ -1,6 +1,9 @@
 import senderConfig as sc
 from Sender import *
+import time
 
-sender = Sender(sc.rpi_temp_sender)
+sender = Sender(sc.rpi_all_sender)
 sender.initialize()
-sender.send()
+while True:
+    sender.send()
+    time.sleep(10)

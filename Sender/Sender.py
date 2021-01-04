@@ -4,7 +4,7 @@ import json
 from Broker import brokerConfig as brokerConfig
 from Message.Message import *
 from Broker.Broker import *
-
+from Data.Data import *
 
 class Sender():
     def __init__(self, rpi_sensor):
@@ -16,11 +16,10 @@ class Sender():
     def initialize(self):
         self.senderConfig = self.returnJsonObj(self.rpi_sensor)
         self.brokerConfig = brokerConfig.getConfig(self.senderConfig['mqtt_broker'])
-        # print(self.senderConfig['topic'])
-
 
     def send(self):
-        message = MQTTMessage(self.senderConfig['topic'], json.dumps("testing"))
+        data = Data()
+        message = MQTTMessage(self.senderConfig['topic'], data.returnData(self.senderConfig['sensor']))
         broker = MQTTSender(self.brokerConfig)
         broker.connect()
         broker.sendMessages(message)
