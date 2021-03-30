@@ -10,7 +10,11 @@ class Data():
     def __init__(self):
         pass
 
-    def returnData(self, sensor):
+    def returnRawData(self, sensor):
+        if sensor == 'temperature':
+            return sense.get_temperature()
+
+    def returnFormattedData(self, sensor):
         if sensor == 'temperature':
             body = {"temperature" : sense.get_temperature()}
             return json.dumps(body)

@@ -16,9 +16,5 @@ class MQTTSender(MQTTBroker):
         self.client = mqtt.Client()
         self.client.connect(self.ip)
 
-    def sendMessages(self, message):
-        # for message in messages:
-        self.client.publish(message.topic, str(message.body))
-
     def disconnect(self):
         self.client.disconnect()
